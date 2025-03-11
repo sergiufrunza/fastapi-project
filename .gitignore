@@ -38,10 +38,6 @@ coverage.xml
 .mr.developer.cfg
 .project
 .pydevproject
-fastapi-application/.env
-.env
-env/
-venv/
 
 # Rope
 .ropeproject
@@ -52,4 +48,20 @@ venv/
 
 # Sphinx documentation
 docs/_build/
-.idea/
+
+**.idea
+/venv/
+venv/
+**/venv/**
+**/venv/
+.DS_Store
+project_info.txt
+/fastapi-application/.env
+.env
+*.env
+
+**/__pycache__/**
+**/__pycache__/
+
+
+
