@@ -38,6 +38,10 @@ coverage.xml
 .mr.developer.cfg
 .project
 .pydevproject
+fastapi-application/.env
+.env
+env/
+venv/
 
 # Rope
 .ropeproject
