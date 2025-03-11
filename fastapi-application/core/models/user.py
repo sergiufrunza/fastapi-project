@@ -4,7 +4,8 @@ from sqlalchemy.orm import (
 )
 
 from .base import Base
+from .mixins import IdIntPkMixin
 
 
-class User(Base):
+class User(IdIntPkMixin, Base):
     username: Mapped[str] = mapped_column(unique=True)
