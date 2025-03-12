@@ -1,9 +1,14 @@
+__all__ = (
+    "main",
+    "main_app",
+)
 from core.config import settings
 from core.gunicorn import (
     Application,
     get_app_options,
 )
 from main import main_app
+
 
 def main():
     app = Application(
@@ -14,10 +19,10 @@ def main():
             workers=settings.gunicorn.workers,
             timeout=settings.gunicorn.timeout,
             loglevel=settings.logging.log_level,
-
         ),
     )
     app.run()
 
-if __name__  == "__main__":
+
+if __name__ == "__main__":
     main()
