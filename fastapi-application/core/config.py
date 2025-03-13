@@ -1,4 +1,3 @@
-
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import BaseModel, PostgresDsn
 
@@ -7,6 +6,13 @@ from typing import Literal
 LOG_DEFAULT_FORMAT = (
     "[%(asctime)s.%(msecs)03d] %(module)10s:%(lineno)-3d %(levelname)-7s - %(message)s"
 )
+
+
+class Bunny(BaseModel):
+    storage_zone: str
+    api_key: str
+    cdn_url: str
+
 
 class LoggingConfig(BaseModel):
     log_level: Literal[
@@ -22,6 +28,7 @@ class LoggingConfig(BaseModel):
 class RunConfig(BaseModel):
     host: str = "0.0.0.0"
     port: int = 8000
+    docs_url: str = None
 
 
 class GunicornConfig(BaseModel):
@@ -30,15 +37,39 @@ class GunicornConfig(BaseModel):
     workers: int = 1
     timeout: int = 900
 
+
+class SuperUser(BaseModel):
+    email: str
+    password: str
+    username: str
+    secret_key: str
+
+
 class ApiV1Prefix(BaseModel):
     prefix: str = "/v1"
     users: str = "/users"
+    auth: str = "/auth"
+    movies: str = "/movies"
 
+
+class AccessToken(BaseModel):
+    lifetime_seconds: int = 3600
+    reset_password_token_secret: str
+    verification_token_secret: str
 
 
 class ApiPrefix(BaseModel):
     prefix: str = "/api"
     v1: ApiV1Prefix = ApiV1Prefix()
+
+    @property
+    def bearer_token_url(self) -> str:
+        # api/v1/auth/login
+        parts = (self.prefix, self.v1.prefix, self.v1.auth, "/login")
+        path = "".join(parts)
+        # return path[1:]
+        return path.removeprefix("/")
+
 
 class DatabaseConfig(BaseModel):
     url: PostgresDsn
@@ -67,7 +98,9 @@ class Settings(BaseSettings):
     logging: LoggingConfig = LoggingConfig()
     api: ApiPrefix = ApiPrefix()
     db: DatabaseConfig
-
+    access_token: AccessToken
+    superuser: SuperUser
+    bunny: Bunny
 
 
 settings = Settings()

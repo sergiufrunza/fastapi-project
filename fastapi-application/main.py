@@ -6,7 +6,9 @@ from fastapi.responses import ORJSONResponse
 import uvicorn
 from api import router as api_router
 from core.config import settings
-from core.models import db_helper, Base
+from core.models import db_helper
+from sqladmin import Admin
+from admin_panel import register_admin_views, AdminAuth
 
 logging.basicConfig(
     force=settings.logging.log_format,
@@ -24,7 +26,14 @@ async def lifespan(app: FastAPI):
 main_app = FastAPI(
     lifespan=lifespan,
     default_response_class=ORJSONResponse,
+    docs_url=settings.run.docs_url,
 )
+admin = Admin(
+    main_app,
+    db_helper.engine,
+    authentication_backend=AdminAuth(settings.superuser.secret_key),
+)
+register_admin_views(admin)
 
 main_app.include_router(
     api_router,
