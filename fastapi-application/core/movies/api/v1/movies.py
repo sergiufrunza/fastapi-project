@@ -6,9 +6,10 @@ from fastapi import (
 )
 from sqlalchemy.ext.asyncio import AsyncSession
 from core.config import settings
-from core.models import db_helper
-from core.crud import movies as movies_crud
-from core.schemas.movie import (
+from core.db import db_helper
+from core.movies import crud as movies_crud
+
+from core.movies.schemas import (
     MovieRead,
 )
 

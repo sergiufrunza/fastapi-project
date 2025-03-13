@@ -8,8 +8,8 @@ from fastapi_users_db_sqlalchemy import (
     SQLAlchemyUserDatabase,
 )
 from core.types.user_id import UserIdType
-from .base import Base
-from .mixins import IdIntPkMixin
+from core.db import Base
+from core.mixins import IdIntPkMixin
 
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import (

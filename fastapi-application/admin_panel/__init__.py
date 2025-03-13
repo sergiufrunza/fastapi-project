@@ -1,4 +1,8 @@
-__all__ = ("AdminAuth",)
+__all__ = (
+    "AdminAuth",
+    "register_admin_views",
+)
+
 from .authentication import AdminAuth
 import importlib
 import pkgutil

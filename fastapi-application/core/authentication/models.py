@@ -13,7 +13,7 @@ from sqlalchemy.orm import (
 )
 
 from core.types.user_id import UserIdType
-from .base import Base
+from core.db.base import Base
 
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import (

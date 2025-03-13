@@ -8,14 +8,9 @@ from slugify import slugify
 
 from typing import TYPE_CHECKING
 
-from .base import Base
-from .mixins import IdIntPkMixin
+from core.db.base import Base
+from core.mixins import IdIntPkMixin
 from datetime import date
-
-if TYPE_CHECKING:
-    from sqlalchemy.ext.asyncio import (
-        AsyncSession,
-    )
 
 
 class Movie(IdIntPkMixin, Base):

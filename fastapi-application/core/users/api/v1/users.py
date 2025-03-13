@@ -1,8 +1,7 @@
 from fastapi import APIRouter
-
-from api.api_v1.fastapi_users import fastapi_users_router
 from core.config import settings
-from core.schemas.user import (
+from core.authentication.api.v1 import fastapi_users_router
+from core.users.schemas import (
     UserRead,
     UserUpdate,
 )
@@ -11,7 +10,6 @@ router = APIRouter(
     prefix=settings.api.v1.users,
     tags=["Users"],
 )
-
 # /me
 # /{id}
 router.include_router(

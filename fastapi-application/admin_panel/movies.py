@@ -1,5 +1,5 @@
 from sqladmin import ModelView
-from core.models import Movie
+from core.movies.models import Movie
 from wtforms import FileField
 from wtforms.validators import Optional
 from fastapi.requests import Request

@@ -1,8 +1,8 @@
-"""create movies table
+"""Initial migration
 
-Revision ID: 61335a8297fb
+Revision ID: e84c009efd69
 Revises:
-Create Date: 2025-03-12 18:57:05.211792
+Create Date: 2025-03-13 13:58:10.753897
 
 """
 
@@ -14,7 +14,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = "61335a8297fb"
+revision: str = "e84c009efd69"
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -40,15 +40,15 @@ def upgrade() -> None:
         sa.Column("is_free", sa.Boolean(), nullable=False),
         sa.Column("in_slider", sa.Boolean(), nullable=False),
         sa.Column("renting_period", sa.Integer(), nullable=False),
-        sa.Column("vod", sa.String(), nullable=False),
+        sa.Column("vod", sa.String(), nullable=True),
         sa.PrimaryKeyConstraint("id", name=op.f("pk_movie")),
         sa.UniqueConstraint("name", name=op.f("uq_movie_name")),
         sa.UniqueConstraint("slug", name=op.f("uq_movie_slug")),
     )
     op.create_table(
         "user",
-        sa.Column("id", sa.Integer(), autoincrement=True, nullable=False),
         sa.Column("username", sa.String(), nullable=False),
+        sa.Column("id", sa.Integer(), autoincrement=True, nullable=False),
         sa.Column("email", sa.String(length=320), nullable=False),
         sa.Column("hashed_password", sa.String(length=1024), nullable=False),
         sa.Column("is_active", sa.Boolean(), nullable=False),

@@ -4,9 +4,9 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
 import uvicorn
-from api import router as api_router
+from router import router as api_router
 from core.config import settings
-from core.models import db_helper
+from core.db import db_helper
 from sqladmin import Admin
 from admin_panel import register_admin_views, AdminAuth
 
