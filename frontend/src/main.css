@@ -8,5 +8,8 @@
 html,
 body,
 #root{
-    @apply h-full w-full overflow-x-hidden;
+    @apply h-svh w-full overflow-x-hidden;
+}
+#root{
+    @apply flex flex-col;
 }

@@ -7,6 +7,8 @@ import uvicorn
 from router import router as api_router
 from app.db import db_helper
 from app.config import settings
+from fastapi.middleware.cors import CORSMiddleware
+
 
 logging.basicConfig(
     force=settings.logging.log_format,
@@ -26,7 +28,13 @@ main_app = FastAPI(
     default_response_class=ORJSONResponse,
     docs_url=settings.run.docs_url,
 )
-
+main_app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 main_app.include_router(
     api_router,
 )

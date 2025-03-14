@@ -1,5 +1,10 @@
-export const LoginPage = () => {
+import { LoginForm } from '../components/LoginForm.jsx';
+
+export function LoginPage() {
+
     return (
-        <h1>Login Page</h1>
+         <div className="grid place-items-center w-full h-full">
+        <LoginForm></LoginForm>
+         </div>
     );
-};
+}
