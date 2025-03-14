@@ -49,6 +49,3 @@ router.include_router(
 router.include_router(
     router=fastapi_users_router.get_reset_password_router(),
 )
-
-is_authenticated = fastapi_users_router.current_user(active=True)
-is_super_user = fastapi_users_router.current_user(active=True, superuser=True)

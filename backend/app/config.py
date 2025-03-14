@@ -14,6 +14,10 @@ class Bunny(BaseModel):
     cdn_url: str
 
 
+class LocalStorage(BaseModel):
+    dir: str = "./uploads"
+
+
 class LoggingConfig(BaseModel):
     log_level: Literal[
         "debug",
@@ -101,6 +105,7 @@ class Settings(BaseSettings):
     access_token: AccessToken
     superuser: SuperUser
     bunny: Bunny
+    local_storage: LocalStorage = LocalStorage()
 
 
 settings = Settings()

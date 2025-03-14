@@ -34,7 +34,7 @@ export const LoginForm = () => {
             navigate('/');
         },
         onError: (error) => {
-            console.error('Login failed', error);
+
         },
     });
 
