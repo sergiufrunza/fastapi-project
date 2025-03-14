@@ -49,7 +49,7 @@ class ApiV1Prefix(BaseModel):
     prefix: str = "/v1"
     users: str = "/users"
     auth: str = "/auth"
-    movies: str = "/movies"
+    files: str = "/files"
 
 
 class AccessToken(BaseModel):

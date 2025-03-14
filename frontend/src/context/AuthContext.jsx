@@ -1,5 +1,7 @@
 // AuthContext.jsx
 import {createContext, useContext, useState} from 'react';
+import {apiClient} from "../clients/apiClient.jsx";
+import qs from 'qs'
 
 // Tipic, vei stoca aici dacă user-ul e logat, token-ul sau obiectul user, etc.
 const AuthContext = createContext(null);
@@ -14,9 +16,10 @@ export function AuthProvider({children}) {
         localStorage.setItem('access_token', newToken);
     };
 
-    const logout = () => {
-        setToken(null);
+    const logout = async () => {
+        await apiClient.post('/auth/logout');
         localStorage.removeItem('access_token');
+        setToken(null);
     };
 
     const value = {

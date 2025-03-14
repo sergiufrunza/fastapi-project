@@ -31,7 +31,7 @@ export const LoginForm = () => {
 
             const token = data.access_token;
             login(token);
-            navigate('/personal');
+            navigate('/');
         },
         onError: (error) => {
             console.error('Login failed', error);
