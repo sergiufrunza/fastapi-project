@@ -85,6 +85,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+backend/uploads
 
 
 
