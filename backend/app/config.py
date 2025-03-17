@@ -15,7 +15,11 @@ class Bunny(BaseModel):
 
 
 class LocalStorage(BaseModel):
-    dir: str = "./uploads"
+    dir: str = "uploads"
+
+
+class GPT(BaseModel):
+    api_key: str
 
 
 class LoggingConfig(BaseModel):
@@ -54,6 +58,7 @@ class ApiV1Prefix(BaseModel):
     users: str = "/users"
     auth: str = "/auth"
     files: str = "/files"
+    gpt: str = "/gpt"
 
 
 class AccessToken(BaseModel):
@@ -106,6 +111,7 @@ class Settings(BaseSettings):
     superuser: SuperUser
     bunny: Bunny
     local_storage: LocalStorage = LocalStorage()
+    gpt: GPT
 
 
 settings = Settings()

@@ -1,11 +1,11 @@
 import {Link} from "react-router-dom";
 
 
-export function IndexNotLogin() {
+export function IndexPage() {
     return (
         <div className="pt-9 w-full h-full flex flex-col justify-between">
             <div className="text-center">
-                <Link to="/login"
+                <Link to="/upload"
                       className="inline-flex justify-between items-center py-1 px-1 pr-4 mb-7 text-sm text-gray-700 bg-gray-100 rounded-full  hover:bg-gray-200 "
                       role="alert">
                                 <span
@@ -24,7 +24,7 @@ export function IndexNotLogin() {
                 <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 ">Simply
                     upload your PDF file, and instantly generate a quiz of 5 engaging questions. Transform
                     your documents into interactive learning in seconds!</p>
-                <Link to="/login"
+                <Link to="/upload"
                       className=" mt-6 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-600 hover:bg-blue-700 focus:ring-4 ">
                     Get started
                     <svg className="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"

@@ -1,8 +1,11 @@
 import {useState} from 'react';
 import {apiClient} from "../clients/apiClient.jsx";
+import { useNavigate } from 'react-router-dom';
 
 export function UploadPDF() {
     const [selectedFile, setSelectedFile] = useState(null);
+    const navigate = useNavigate();
+
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file && file.type === 'application/pdf') {
@@ -14,16 +17,19 @@ export function UploadPDF() {
 
     const handleUpload = () => {
         const formData = new FormData();
+        if (!selectedFile) {
+            return
+        }
         formData.append('file', selectedFile);
-
         apiClient.post('/files/upload', formData, {
             headers: {'Content-Type': 'multipart/form-data'}
         }).then(response => {
-            setSelectedFile(null);
-            console.log('Uploaded:', response.data);
+            if (response.data && response.data.id) {
+                navigate(`/quiz/${response.data.id}`);
+            }
         }).catch(error => {
-            setSelectedFile(null);
         });
+        setSelectedFile(null);
     };
     return (
         <div className="w-full max-w-lg flex flex-col gap-8">

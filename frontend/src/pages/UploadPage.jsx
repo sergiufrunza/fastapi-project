@@ -1,6 +1,6 @@
 import {UploadPDF} from "../components/UploadPDF.jsx";
 
-export function IndexIsLogin() {
+export function UploadPage() {
     return (
         <div className="h-full w-full grid place-items-center">
             <UploadPDF></UploadPDF>

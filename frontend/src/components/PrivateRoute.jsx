@@ -1,12 +1,12 @@
 // PrivateRoute.jsx
 import {Navigate} from 'react-router-dom';
-import {useAuth} from '../context/AuthContext';
+import {useAuth} from '../context/AuthContext.jsx';
 
-export function PrivateRoute({children, fallback = null}) {
+export function PrivateRoute({children}) {
     const {isLoggedIn} = useAuth();
 
     if (!isLoggedIn) {
-        return fallback || <Navigate to="/login" replace/>;
+        return <Navigate to="/login" replace/>;
     }
 
     return children;
