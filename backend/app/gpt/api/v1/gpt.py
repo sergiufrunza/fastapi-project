@@ -7,7 +7,6 @@ from fastapi import (
 )
 from app.gpt.schemas import (
     QuizRead,
-    QuizRequest,
 )
 from sqlalchemy.future import select
 from app.files.models import File as FileModel
@@ -27,7 +26,7 @@ router = APIRouter(
 )
 
 
-@router.post("/{file_id}", response_model=QuizRead)
+@router.get("/{file_id}", response_model=QuizRead)
 async def get_quiz(
     file_id: uuid.UUID,
     session: Annotated[
@@ -35,7 +34,6 @@ async def get_quiz(
         Depends(db_helper.session_getter),
     ],
     user: Annotated["UserRead", Depends(is_authenticated)],
-    old_quiz: QuizRequest,
 ) -> QuizRead:
 
     result = await session.execute(
@@ -44,6 +42,6 @@ async def get_quiz(
     file_result = result.scalars().first()
     if not file_result:
         raise HTTPException(status_code=404, detail="File not found")
-    quiz = await get_gpt_quiz(file_result.url, old_quiz.quiz)
+    quiz = await get_gpt_quiz(file_result.url)
     response = QuizRead(quiz=quiz)
     return response

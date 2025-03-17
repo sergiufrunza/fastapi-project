@@ -16,7 +16,7 @@ export function QuizPage() {
         }
 
         setLoading(true);
-        apiClient.post(`/gpt/${id}`, {quiz: ""})
+        apiClient.get(`/gpt/${id}`)
             .then(response => {
                 setQuizData(response.data);
                 setLoading(false);
@@ -33,7 +33,7 @@ export function QuizPage() {
     }
     return (
         <div className="grid place-items-center w-full h-full">
-            {quizData ? <Quiz id={id} data={quizData} setQuizData={setQuizData}/> :
+            {quizData ? <Quiz data={quizData}/> :
                 <h2 className="text-center text-2xl/9 font-bold tracking-tight text-gray-900">Nu s-a putut încărca
                     quiz-ul</h2>}
         </div>
