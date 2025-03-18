@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
 import uvicorn
-from router import router as api_router
+from router.router_v1 import router
 from app.db import db_helper
 from app.config import settings
 from fastapi.middleware.cors import CORSMiddleware
@@ -36,7 +36,7 @@ main_app.add_middleware(
     allow_headers=["*"],
 )
 main_app.include_router(
-    api_router,
+    router,
 )
 
 

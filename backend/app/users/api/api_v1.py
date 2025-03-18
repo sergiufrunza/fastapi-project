@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from app.config import settings
-from app.authentication.api.v1 import fastapi_users_router
+from app.authentication.api.api_v1 import fastapi_users_router
 from app.users.schemas import (
     UserRead,
     UserUpdate,
