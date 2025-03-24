@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from app.config import settings
-from app.authentication.api.api_v1 import fastapi_users_router
+from app.authentication.auth_router import auth_router
 from app.users.schemas import (
     UserRead,
     UserUpdate,
@@ -13,7 +13,7 @@ router = APIRouter(
 # /me
 # /{id}
 router.include_router(
-    router=fastapi_users_router.get_users_router(
+    router=auth_router.get_users_router(
         UserRead,
         UserUpdate,
     ),

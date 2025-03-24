@@ -13,7 +13,7 @@ from app.files.schemas import (
 from app.config import settings
 from app.db import db_helper
 from app.files.models import File as FileModel
-from app.authentication.dependencies.verify import is_authenticated
+from app.authentication.dependencies import is_authenticated
 from app.storage.local import save_upload_file
 
 if TYPE_CHECKING:

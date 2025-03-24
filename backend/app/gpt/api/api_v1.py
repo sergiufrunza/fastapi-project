@@ -12,7 +12,7 @@ from sqlalchemy.future import select
 from app.files.models import File as FileModel
 from app.config import settings
 from app.db import db_helper
-from app.authentication.dependencies.verify import is_authenticated
+from app.authentication.dependencies import is_authenticated
 from app.gpt.services import get_quiz as get_gpt_quiz
 
 if TYPE_CHECKING:

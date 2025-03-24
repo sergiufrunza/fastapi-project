@@ -1,10 +1,13 @@
 import logging
 from contextlib import asynccontextmanager
-
-from fastapi import FastAPI
+from fastapi import (
+    APIRouter,
+    Depends,
+    FastAPI,
+)
 from fastapi.responses import ORJSONResponse
 import uvicorn
-from router.router_v1 import router
+from routers.router import router
 from app.db import db_helper
 from app.config import settings
 from fastapi.middleware.cors import CORSMiddleware
@@ -35,6 +38,8 @@ main_app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
 main_app.include_router(
     router,
 )

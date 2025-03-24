@@ -1,7 +1,5 @@
-__all__ = (
-    "main",
-    "main_app",
-)
+#!/usr/bin/env python
+
 from app.config import settings
 from app.gunicorn import (
     Application,
